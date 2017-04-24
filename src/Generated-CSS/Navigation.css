@@ -1,0 +1,7 @@
+#nav-parent {
+  padding: 10px 20px; }
+  #nav-parent #nav-container {
+    text-align: center; }
+    #nav-parent #nav-container .nav {
+      font-size: 3em;
+      color: black; }
