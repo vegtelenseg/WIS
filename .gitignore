@@ -22,4 +22,4 @@ yarn-error.log*
 # generated sources
 
 
-/src/Generate-*
+/**/*/*.css
