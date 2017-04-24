@@ -15,7 +15,7 @@ class AppComponent extends Component {
     }
     render() {
         return (
-          <div>
+          <div id="app-body">
             <NavigationComponent name={app.APP_NAME}/>
             <SearchComponent placeHolder="Search here..."/>
             <ProductsComponent products={this.state.products}/>
