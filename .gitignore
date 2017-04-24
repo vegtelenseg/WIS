@@ -21,4 +21,5 @@ yarn-error.log*
 
 # generated sources
 
-src/Generate-CSS
+
+/src/Generate-*
