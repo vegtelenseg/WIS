@@ -5,8 +5,8 @@ class ProductItemComponent extends Component {
         return (
           <div className="productItem-parent">
             <div className="productItem-container">
+              <h1 className="title">{this.props.products.title}</h1>
               <div className="product">
-                <h1 className="title">{this.props.products.title}</h1>
                 <h2 className="manufactured">Date Manufactured: {this.props.products.manufactured}</h2>
                 <h2 className="best-before">Best Before: {this.props.products.bestBefore}</h2>
                 <h3 className="items-remaining">Remaining: {this.props.products.qty} Items</h3>

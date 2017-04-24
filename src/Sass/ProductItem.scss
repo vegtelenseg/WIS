@@ -1,11 +1,25 @@
 .productItem-parent {
+  .title {
+    color: #444;
+  }
   .productItem-container {
+
+    background-color: #eee;
+    cursor: pointer;
+    width:100%;
+    text-align: left;
+    border:none;
+    outline: none;
+    transition: 0.4s;
+    &.active, &:hover {
+      background-color: #ddd;
+    }
     .product {
-
+      padding: 0 18px;
+      background-color: white;
+      display: none;
     }
-    .title {
 
-    }
     .manufactured {
 
     }

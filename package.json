@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-search-input": "^0.10.4",
     "sass": "^0.5.0"
   },
   "devDependencies": {

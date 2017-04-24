@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NavigationComponent from './Navigation.Component';
 import ProductsComponent from './Products.Component';
-import SearchComponent from './Search.Component';
 import '../Generated-CSS/App.css';
 var mockProducts = require('../Shared/generated.json'),
     app = require('../Shared/app.json');
@@ -17,7 +16,6 @@ class AppComponent extends Component {
         return (
           <div id="app-body">
             <NavigationComponent name={app.APP_NAME}/>
-            <SearchComponent placeHolder="Search here..."/>
             <ProductsComponent products={this.state.products}/>
           </div>
         );
