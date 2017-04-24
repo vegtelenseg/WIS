@@ -18,3 +18,7 @@ yarn-error.log*
 
 # vscode
 .vscode
+
+# generated sources
+
+/src/Generate-CSS
