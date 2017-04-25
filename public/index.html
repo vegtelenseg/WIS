@@ -8,24 +8,35 @@
   </head>
   <body>
     <div id="root"></div>
+    <script src="./jquery-3.2.1.js"></script>
     <script>
-      var acc = document.getElementsByClassName("productItem-container");
-      var i = -1;
-      while (++i < acc.length) {
-          acc[i].onmousedown = function(){
-/* Toggle between adding and removing the "active" class,
-to highlight the button that controls the panel */
-      this.classList.toggle("active");
+      var lastClicked;
+      $(document).ready(function() {
 
-/* Toggle between hiding and showing the active panel */
-      var panel = this.nextElementSibling;
-      if (panel.style.display === "block") {
-        panel.style.display = "none";
-      } else {
-          panel.style.display = "block";
-        }
-      }
-    }
+        $('.productItem-container').click(function(e) {
+          e.stopPropagation();
+          lastClicked = e.target;
+          let lisOfProducts = $(this).children(),
+              product = $(lisOfProducts).each(() => {
+                if ($(this).hasClass(".product")) {
+                  return this;
+                }
+              });
+            if (product !== null || typeof product !== undefined) {
+              if ($(product).hasClass('active')) {
+                $(product).removeClass('active');
+              }
+              else {
+                $('.product').each(() => {
+                    if ($(this).hasClass('active')) {
+                      $(this).removeClass('active');
+                    }
+                });
+                $(product).addClass('active');
+              }
+            }
+          });
+        });
     </script>
   </body>
 </html>

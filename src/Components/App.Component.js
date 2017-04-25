@@ -13,13 +13,13 @@ class AppComponent extends Component {
       }
     }
     render() {
-        return (
-          <div id="app-body">
-            <NavigationComponent name={app.APP_NAME}/>
+      return (
+        <div id="app-body">
+          <NavigationComponent name={app.APP_NAME}/>
             <ProductsComponent products={this.state.products}/>
-          </div>
-        );
-    }
+        </div>
+    );
+  }
 }
 
 export default AppComponent;
