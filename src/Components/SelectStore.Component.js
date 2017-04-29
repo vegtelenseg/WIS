@@ -6,17 +6,17 @@ class SelectStoreComponent extends Component {
       <div>
         <div id="store-parent">
           <div id="store-container">
-            <div className="store-item">
+            <div id="store1" className="store-item">
             </div>
-            <div className="store-item">
+            <div id="store2" className="store-item">
             </div>
-            <div className="store-item">
+            <div id="store3" className="store-item">
             </div>
-            <div className="store-item">
+            <div id="store4" className="store-item">
             </div>
-            <div className="store-item">
+            <div id="store5" className="store-item">
             </div>
-            <div className="store-item">
+            <div id="store6" className="store-item">
             </div>
           </div>
         </div>
