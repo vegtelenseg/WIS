@@ -1,0 +1,29 @@
+#search-parent {
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate3d(-50%, -200%, 0);
+  #search-container {
+    #search-field {
+      box-shadow: 0.2px 0.2px 0.5px grey;
+      &:after {
+        content: '\1F50D';
+        width: 30px;
+        height: 29px;
+        font-size: 3em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(290px, -55%);
+        display: inline-table;
+      }
+      #text-field {
+        height:50px;
+        width:665px;
+        outline-color: #e3ecec;
+        font-size: 1.8em;
+        padding-left:20px;
+      }
+    }
+  }
+}

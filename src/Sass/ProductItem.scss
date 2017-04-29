@@ -17,9 +17,14 @@
     .product {
       padding: 0 18px;
       background-color: white;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 2s linear;
       display: none;
     }
     .active {
+      visibility: visible;
+      opacity: 1;
       display: block;
     }
     .manufactured {
