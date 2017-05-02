@@ -1,0 +1,29 @@
+{
+  "name": "stockt",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:4300/",
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "6.22.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-search-input": "^0.10.4",
+    "sass": "^0.5.0",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.2",
+    "npm-run-all": "^4.0.2",
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "build-css": "node-sass src/Sass/ -o src/Generated-CSS/",
+    "watch-css": "npm run build-css && node-sass src/Sass -o src/Generated-CSS/ --watch --recursive",
+    "server": "nodemon ../server/app.js",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js server",
+    "build": "npm run build-css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

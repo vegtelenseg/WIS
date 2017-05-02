@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <title>Stock Taker</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+      var lastClicked;
+      $(document).ready(function() {
+        $('.productItem-container').click(function(e) {
+          e.stopPropagation();
+          lastClicked = e.target;
+          let lisOfProducts = $(this).children(),
+              product = $(lisOfProducts).each(() => {
+                if ($(this).hasClass(".product")) {
+                  return this;
+                }
+              });
+            if (product !== null || typeof product !== undefined) {
+              if ($(product).hasClass('active')) {
+                $(product).removeClass('active');
+              }
+              else {
+                $('.product').each(() => {
+                    if ($(this).hasClass('active')) {
+                      $(this).removeClass('active');
+                    }
+                });
+                $(product).addClass('active');
+              }
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
