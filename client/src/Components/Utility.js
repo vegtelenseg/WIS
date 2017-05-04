@@ -1,11 +1,11 @@
-function search(query, cb) {
+function search(query, callback) {
   let headers = new Headers();
   headers.append('Content-Type', 'application/x-www-form-urlencoded');
   headers.append('Accept', 'application/json');
   headers.append('Access-Control-Allow-Origin', '*');
   return fetch(`api/food?q=${query}`, headers).then(checkStatus)
     .then(parseJSON)
-    .then(cb);
+    .then(callback);
 }
 
 function checkStatus(response) {

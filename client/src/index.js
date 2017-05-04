@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AppComponent from './Components/App.Component';
-import './index.css';
 
 ReactDOM.render(
   <AppComponent name="Pick 'n' Pay"/>,
