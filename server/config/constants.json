@@ -1,0 +1,31 @@
+{
+  "DB" : {
+    "ORIGIN" : "mongodb",
+    "USER" : "simzam",
+    "DOMAIN": "ds131151.mlab.com",
+    "PASS": "7bitsfacebook7",
+    "PORT": 31151,
+    "COLLECTION": "products",
+    "CONNECTION_OPTS": {
+      "server": {
+        "socketOptions": {
+          "keepAlive": 300000,
+          "connectTimeoutMS": 30000
+          }
+        },
+        "replset": {
+          "socketOptions": {
+            "keepAlive": 300000,
+            "connectTimeoutMS" : 30000
+        }
+      }
+    }
+  },
+  "SERVER" : {
+    "PORT" : 4300
+  },
+  "ENV": {
+    "PROD": "production",
+    "DEV": "development"
+  }
+}
