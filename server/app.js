@@ -1,27 +1,28 @@
 const express = require('express');
 const fs = require('fs');
-const constants = require('./config/constants.json');
+const config = require('./config/constants.json');
 const Product = require('./models/Product.Model.js');
 let mongo = require('mongod'),
     mongoose = require('mongoose'),
-    db = mongoose.connect(constants.DB.ORIGIN + "://" +
-                          constants.DB.USER + ":" +
-                          constants.DB.PASS + "@" +
-                          constants.DB.DOMAIN + ":" +
-                          constants.DB.PORT + "/" +
-                          constants.DB.COLLECTION,
-                          constants.DB.CONNECTION_OPTS);
+    db = mongoose.connect(config.DB.ORIGIN + "://" +
+                          config.DB.USER + ":" +
+                          config.DB.PASS + "@" +
+                          config.DB.DOMAIN + ":" +
+                          config.DB.PORT + "/" +
+                          config.DB.COLLECTION,
+                          config.DB.CONNECTION_OPTS);
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log("Sucessfully connectected to database");
 });
+
 const app = express();
 
-app.set('port', (process.env.PORT || constants.SERVER.PORT));
+app.set('port', (process.env.PORT || config.SERVER.PORT));
 
 //Only server static files in production
-if (process.env.NODE_ENV === constants.ENV.PROD) {
+if (process.env.NODE_ENV === config.ENV.PROD) {
   app.use(express.static('src/build'));
 }
 
@@ -36,7 +37,7 @@ app.get('/api/food', (req, res) => {
   else {
       console.log("Sucessfully reached the backend. The query is: " + param);
       Product.find({
-        category: param
+        $text: { $search: param}
       }, (error, category)  => {
           if (error) {
             console.log("DB ERROR: " + error);
