@@ -9,5 +9,10 @@ let mongoose	= require('mongoose'),
       productQty: { type: Number, min: 0 },
       productCheckoutRate: { type: Number, min: 0 }
 });
+productSchema.index({
+  productName: "text",
+  category: "text",
+  productBrand: "text"
+});
 var Product = mongoose.model('Product', productSchema);
 module.exports = Product;
