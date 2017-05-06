@@ -6,8 +6,10 @@ let mongoose	= require('mongoose'),
       productName : { type: String, trim: true, default: 'yogurt' },
       productBrand: { type: String, trim: true },
       productBestBefore: { type: Date, default: Date.now },
-      productQty: { type: Number, min: 0 },
-      productCheckoutRate: { type: Number, min: 0 }
+      productQty: { type: Number, min : 0 },
+      productCheckoutRate: { type: Number, min: 0 },
+      price: { type: String, trim:true },
+      picture: { type: String, trim:true }
 });
 productSchema.index({
   productName: "text",

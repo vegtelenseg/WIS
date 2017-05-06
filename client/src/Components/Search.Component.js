@@ -4,13 +4,16 @@ import Utility from './Utility';
 import 'whatwg-fetch';
 
 const MATCHING_ITEM_LIMIT = 25;
+const SINGLE_SPACE = ' ';
+const EMPTY= '';
+const ENTER= 'Enter';
 
 class SearchComponent extends Component {
   constructor() {
     super();
     this.state = {
       foods: [],
-      inputVal: ''
+      inputVal: EMPTY
     }
   }
   keystrokeEventListener(eventRaiser) {
@@ -19,14 +22,14 @@ class SearchComponent extends Component {
     });
   }
   returnKeyEventListener(eventRaiser){
-    if (eventRaiser.key === 'Enter') {
+    if (eventRaiser.key === ENTER) {
       let query = eventRaiser.target.value;
       this.validateQueryAndSearch(query);
     }
   }
   validateQueryAndSearch(query) {
     if (typeof query !== undefined && query !== null) {
-      query = query.replace(/[ ]{1,}/g, ' ').trim();
+      query = query.replace(/[ ]{1,}/g, SINGLE_SPACE).trim();
       if (query.length > 0) {
         this.searchEngine(query);
       }

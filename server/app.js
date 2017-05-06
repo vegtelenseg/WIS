@@ -4,19 +4,12 @@ const config = require('./config/constants.json');
 const Product = require('./models/Product.Model.js');
 let mongo = require('mongod'),
     mongoose = require('mongoose'),
-    db = mongoose.connect(config.DB.ORIGIN + "://" +
-                          config.DB.USER + ":" +
-                          config.DB.PASS + "@" +
-                          config.DB.DOMAIN + ":" +
-                          config.DB.PORT + "/" +
-                          config.DB.COLLECTION,
-                          config.DB.CONNECTION_OPTS);
+    db = mongoose.connect(config.DB.CONNECTION_STRING, config.DB.CONNECTION_OPTS);
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log("Sucessfully connectected to database");
 });
-
 const app = express();
 
 app.set('port', (process.env.PORT || config.SERVER.PORT));
@@ -35,15 +28,15 @@ app.get('/api/food', (req, res) => {
     return;
   }
   else {
-      console.log("Sucessfully reached the backend. The query is: " + param);
+      console.log(`Sucessfully reached the backend. The query is: ${param}`);
       Product.find({
-        $text: { $search: param}
       }, (error, category)  => {
           if (error) {
-            console.log("DB ERROR: " + error);
+            console.log(`DB ERROR => ${error}`);
           }
-          else if(category) {
-            console.log("Product name is: " + category.productName);
+          else if(category !== null && typeof category !== undefined ) {
+            console.log(`Product name is: ${JSON.stringify(category)}`);
+            return category;
           }
       });
     }

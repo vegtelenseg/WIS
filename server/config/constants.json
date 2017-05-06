@@ -1,11 +1,6 @@
 {
   "DB" : {
-    "ORIGIN" : "mongodb",
-    "USER" : "simzam",
-    "DOMAIN": "ds131151.mlab.com",
-    "PASS": "7bitsfacebook7",
-    "PORT": 31151,
-    "COLLECTION": "products",
+    "CONNECTION_STRING": "mongodb://simzam:7bitsfacebook7@ds131151.mlab.com:31151/products",
     "CONNECTION_OPTS": {
       "server": {
         "socketOptions": {
