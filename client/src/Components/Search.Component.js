@@ -38,9 +38,7 @@ class SearchComponent extends Component {
     }
   }
   searchEngine(query) {
-    console.log("About to search for: " + query);
     Utility.search(query, (foods) => {
-      console.log("The found foods are: " + foods);
       this.setState({
         foods: foods
       });

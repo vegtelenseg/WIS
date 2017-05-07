@@ -28,7 +28,6 @@ app.get('/api/food', (req, res) => {
     return;
   }
   else {
-      console.log(`Sucessfully reached the backend. The query is: ${param}`);
       Product.find({
           $text: { $search: param }
       }, (error, product)  => {
@@ -36,7 +35,6 @@ app.get('/api/food', (req, res) => {
             console.log(`DB ERROR => ${error}`);
           }
           else if(product !== null && typeof product !== undefined ) {
-            console.log(`Product name is: ${product}`);
             return res.json(product);
           }
       });

@@ -33,7 +33,7 @@ class AppComponent extends Component {
       return (
         <div id="app-body">
           <WatchedFoods foods={watchedFoods} onFoodClick={this.unwatchFood}/>
-          <SearchComponent/>
+          <SearchComponent onFoodClick={this.watchFood}/>
           <SelectStoreComponent/>
         </div>
     );
