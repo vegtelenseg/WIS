@@ -40,7 +40,7 @@ class SearchComponent extends Component {
   searchEngine(query) {
     Utility.search(query, (foods) => {
       this.setState({
-        foods: foods
+        foods: foods.slice(0, MATCHING_ITEM_LIMIT)
       });
     });
   }

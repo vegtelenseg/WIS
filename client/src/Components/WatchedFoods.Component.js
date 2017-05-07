@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Generated-CSS/WatchedFoods.css';
 
 export default function WatchedFoods(props) {
   const { foods } = props;
@@ -7,7 +8,7 @@ export default function WatchedFoods(props) {
       <div className="food-parent" key={idx} onClick={() => props.onFoodClick(idx)}>
         <div className="food-container">
           <div className="food-item">
-            <div>{food}</div>
+            <div>{idx} {food}</div>
           </div>
         </div>
       </div>
