@@ -2,6 +2,9 @@
   .food-container {
     .food-item {
       padding: 10px 0;
+      &:hover {
+        cursor: pointer;
+      }
       span {
 
       }

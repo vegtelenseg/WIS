@@ -48,7 +48,9 @@ class SearchComponent extends Component {
     const { foods } = this.state;
     const foodRows = foods.map((food, idx) => {
       return(
-        <div className="food-parent" key={idx} onClick={() => this.props.onFoodClick(idx)}>
+        <div className="food-parent"
+          key={idx}
+          onClick={() => this.props.onFoodClick(food)}>
           <div className="food-container">
             <div className="food-item">
               <span>Product Name: {food.productName}<br/></span>
