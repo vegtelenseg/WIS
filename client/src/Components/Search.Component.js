@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../Generated-CSS/Search.css';
+import '../Generated-CSS/ProductItem.css';
 import Utility from './Utility';
 import 'whatwg-fetch';
 
@@ -22,6 +23,7 @@ class SearchComponent extends Component {
     });
   }
   returnKeyEventListener(eventRaiser){
+    console.log(eventRaiser.key);
     if (eventRaiser.key === ENTER) {
       let query = eventRaiser.target.value;
       this.validateQueryAndSearch(query);
@@ -38,9 +40,9 @@ class SearchComponent extends Component {
   searchEngine(query) {
     console.log("About to search for: " + query);
     Utility.search(query, (foods) => {
-      console.log("The found foods are: " + JSON.stringify(foods));
+      console.log("The found foods are: " + foods);
       this.setState({
-        foods: foods.slice(0, MATCHING_ITEM_LIMIT)
+        foods: foods
       });
     });
   }
@@ -51,9 +53,11 @@ class SearchComponent extends Component {
         <div className="food-parent" key={idx} onClick={() => this.props.onFoodClick(idx)}>
           <div className="food-container">
             <div className="food-item">
-              <div>
-                {food}
-              </div>
+              <span>Product Name: {food.productName}<br/></span>
+              <span>Quantity: {food.productQty} left<br/></span>
+              <span>Best Before: {food.productBestBefore}<br/></span>
+              <span>Price: R {food.price}<br/></span>
+              <span>Checkout Rate: {food.productCheckoutRate} per hour</span>
             </div>
           </div>
         </div>
@@ -73,7 +77,7 @@ class SearchComponent extends Component {
                   placeholder="Search Spar items here..."
             />
           </div>
-          <div>{foodRows}</div>
+          <div id="food-row">{foodRows}</div>
         </div>
       </div>
     );
