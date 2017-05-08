@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../Generated-CSS/Search.css';
-import '../Generated-CSS/ProductItem.css';
 import Utility from './Utility';
 import 'whatwg-fetch';
 

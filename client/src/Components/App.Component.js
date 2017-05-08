@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchComponent from './Search.Component.js';
 import SelectStoreComponent from './SelectStore.Component';
 import WatchedFoods from './WatchedFoods.Component';
-import '../Generated-CSS/App.css';
+import '../Generated-CSS/grid.css';
 var mockProducts = require('../Shared/generated.json');
 //    app = require('../Shared/app.json');
 
