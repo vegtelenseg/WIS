@@ -30,13 +30,13 @@ img {
   max-width: 100%;
 }
 
-.grid-parent, .grid-row {
-  @extend %clearfix;
-}
-
 .grid-parent {
   width: 95%;
   max-width: $grid-max-width;
+}
+
+.grid-parent, .grid-row {
+  @extend %clearfix;
 }
 
 [class*='grid-column-'] {
@@ -44,6 +44,7 @@ img {
   padding: 1em;
   width: 100%;
   min-height: 1px;
+  
 }
 @for $i from 1 through $grid-columns {
   .grid-column-#{$i} {
