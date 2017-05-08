@@ -68,13 +68,14 @@ class SearchComponent extends Component {
           <div id="store-logo-container">
             <div id="store-logo"></div>
           </div>
-          <div id="search-field">
+          <div id="search-item">
             <input type="text" id="text-field"
                   value={this.state.inputVal}
                   onKeyPress={this.returnKeyEventListener.bind(this)}
                   onChange={this.keystrokeEventListener.bind(this)}
                   placeholder="Search Spar items here..."
             />
+            <span id="search-icon"></span>
           </div>
           <div id="food-row">{foodRows}</div>
         </div>

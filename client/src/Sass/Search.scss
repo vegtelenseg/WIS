@@ -1,0 +1,25 @@
+#search-parent {
+  position: relative;
+  #search-container {
+    position: absolute;
+    right: 0;
+    #search-item {
+      #search-icon {
+        &:after {
+          content: '\1F50D';
+          width: 30px;
+          height: 30px;
+        }
+      }
+      #text-field {
+        border-radius: 10em;
+        width: 1.32em;
+        outline: none;
+        transition: .5s all;
+        &:focus {
+          width: 250px;
+        }
+      }
+    }
+  }
+}
