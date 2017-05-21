@@ -5,7 +5,6 @@ import WatchedFoods from './WatchedFoods.Component';
 import '../Generated-CSS/grid.css';
 var mockProducts = require('../Shared/generated.json');
 //    app = require('../Shared/app.json');
-
 class AppComponent extends Component {
     constructor() {
       super();

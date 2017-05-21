@@ -1,0 +1,20 @@
+@import "./_mixins.scss";
+
+#store-parent {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 50%;
+  background-color: transparent;
+  #store-container {
+    position: relative;
+    width: 85%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 16px;
+    .store-item {
+      position: absolute;
+    }
+  }
+}

@@ -1,87 +1,86 @@
 import React, { Component } from 'react';
-import '../Generated-CSS/Search.css';
 import Utility from './Utility';
-import 'whatwg-fetch';
+import '../Generated-CSS/Search.css';
+import Autosuggest from 'react-autosuggest';
 
-const MATCHING_ITEM_LIMIT = 25;
-const SINGLE_SPACE = ' ';
-const EMPTY= '';
-const ENTER= 'Enter';
+const stores = require('../Shared/stores.json');
 
 class SearchComponent extends Component {
   constructor() {
     super();
     this.state = {
-      foods: [],
-      inputVal: EMPTY
-    }
+      value: '',
+      suggestions: []
+    };
   }
-  keystrokeEventListener(eventRaiser) {
+  getSuggestionValue = suggestion => suggestion.name;
+  getSuggestions(value) {
+    const inputValue = value.trim().toLowerCase();
+    return inputValue.length === 0 ? [] : stores.filter(store =>
+      store.name.toLowerCase().includes(inputValue) ||
+      store.location.toLowerCase().includes(inputValue)
+    );
+  };
+  onChange(eventRaiser, { newValue }) {
     this.setState({
-      inputVal: eventRaiser.target.value
+      value: newValue
     });
-  }
-  returnKeyEventListener(eventRaiser){
-    console.log(eventRaiser.key);
-    if (eventRaiser.key === ENTER) {
-      let query = eventRaiser.target.value;
-      this.validateQueryAndSearch(query);
-    }
-  }
+  };
+  onSuggestionsFetchRequested({ value }){
+    this.setState({
+      suggestions: this.getSuggestions(value)
+    });
+  };
+  onSuggestionsClearRequested() {
+    this.setState({
+      suggestions: []
+    });
+  };
   validateQueryAndSearch(query) {
+    query = query.name; // Might need to search by location
     if (typeof query !== undefined && query !== null) {
-      query = query.replace(/[ ]{1,}/g, SINGLE_SPACE).trim();
+      query = query.replace(/[ ]{1,}/g, ' ').trim();
       if (query.length > 0) {
         this.searchEngine(query);
       }
     }
   }
-  searchEngine(query) {
+  searchEngine(query){
     Utility.search(query, (foods) => {
       this.setState({
-        foods: foods.slice(0, MATCHING_ITEM_LIMIT)
+        foods: foods.slice(0, 25)
       });
     });
   }
-  render() {
-    const { foods } = this.state;
-    const foodRows = foods.map((food, idx) => {
-      return(
-        <div className="food-parent"
-          key={idx}
-          onClick={() => this.props.onFoodClick(food)}>
-          <div className="food-container">
-            <div className="food-item">
-              <span>Product Name: {food.productName}<br/></span>
-              <span>Quantity: {food.productQty} left<br/></span>
-              <span>Best Before: {food.productBestBefore}<br/></span>
-              <span>Price: R {food.price}<br/></span>
-              <span>Checkout Rate: {food.productCheckoutRate} per hour</span>
-            </div>
-          </div>
-        </div>
-      );
-    });
+  renderSuggestion(suggestion){
     return (
-      <div id="search-parent">
-        <div id="search-container">
-          <div id="store-logo-container">
-            <div id="store-logo"></div>
-          </div>
-          <div id="search-item">
-            <input type="text" id="text-field"
-                  value={this.state.inputVal}
-                  onKeyPress={this.returnKeyEventListener.bind(this)}
-                  onChange={this.keystrokeEventListener.bind(this)}
-                  placeholder="Search Spar items here..."
-            />
-            <span id="search-icon"></span>
-          </div>
-          <div id="food-row">{foodRows}</div>
+      <div onClick={() => this.validateQueryAndSearch(suggestion)}>
+        <div className="store-name">
+          {suggestion.name}
+        </div>
+        <div className="store-location">
+          {suggestion.location}
         </div>
       </div>
     );
   }
+  render() {
+    const { value, suggestions } = this.state;
+    const inputProps = {
+      placeholder: 'Search for a store',
+      value,
+      onChange: this.onChange.bind(this)
+    };
+    return (
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(this)}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested.bind(this)}
+        getSuggestionValue={this.getSuggestionValue}
+        renderSuggestion={this.renderSuggestion.bind(this)}
+        inputProps={inputProps}
+      />
+    );
+  }
 }
-
 export default SearchComponent;
