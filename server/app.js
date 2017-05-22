@@ -1,10 +1,8 @@
 let feathers = require('feathers'),
-    express = require('express'),
     socketio = require('feathers-socketio'),
     rest = require('feathers-rest'),
     service = require('feathers-mongoose'),
     bodyParser = require('body-parser'),
-    fs = require('fs'),
     config = require('./config/constants.json'),
     Product = require('./models/Product.Model.js'),
     mongo = require('mongod'),
@@ -18,22 +16,18 @@ db.once('open', () => {
 });
 
 const app = feathers()
-  // Enable REST services
   .configure(rest())
-  // Turn on JSON parser for REST services
   .use(bodyParser.json())
-  // Turn on URL-encoded parser for REST services
   .use(bodyParser.urlencoded({extended: true}));
 
 app.set('port', (process.env.PORT || config.SERVER.PORT));
 
-//Only server static files in production
 if (process.env.NODE_ENV === config.ENV.PROD) {
   app.use(express.static('src/build'));
 }
 
 app.use('/api/food', service({Model: Product}));
-app.get('/api/food', (req, res) => {
+/*app.get('/api/food', (req, res) => {
   const param = req.query.q;
   if (!param) {
     res.json({
@@ -53,7 +47,7 @@ app.get('/api/food', (req, res) => {
           }
       });
     }
-});
+});*/
 app.listen(app.get('port'), () => {
     console.log(`The server is running at http://localhost:${app.get('port')}`)
 });

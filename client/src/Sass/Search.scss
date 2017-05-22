@@ -1,31 +1,26 @@
 @import "./_mixins.scss";
-#search-parent {
+
+#text-field {
   position: absolute;
+  width: 20em;
+  height: 2.2em;
+  outline: none;
+  transition: .5s all;
+  padding: 0 10px;
   @include translateIn3d;
-  width: 100%;
-  #search-container {
-    position: relative;
-    #search-item {
-      position: inherit;
-      #search-icon {
-        position: relative;
-        @include translateIn3d;
-        padding-left: 7em;
-        &:after {
-          content: '\1F50D';
-          width: 30px;
-          height: 30px;
-        }
-      }
-      #text-field {
-        position: absolute;
-        width: 20em;
-        height: 2.2em;
-        outline: none;
-        transition: .5s all;
-        padding: 0 10px;
-        @include translateIn3d;
-      }
-    }
+  top: 20%;
+  &:after {
+    content: '\1F50D';
+    width: 30px;
+    height: 30px;
   }
+}
+#autosuggest {
+  position: relative;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 5px 0;
+  top: 22vh;
 }

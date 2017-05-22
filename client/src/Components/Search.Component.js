@@ -54,7 +54,7 @@ class SearchComponent extends Component {
   }
   renderSuggestion(suggestion){
     return (
-      <div onClick={() => this.validateQueryAndSearch(suggestion)}>
+      <div id="autosuggest" onClick={() => this.validateQueryAndSearch(suggestion)}>
         <div className="store-name">
           {suggestion.name}
         </div>
@@ -69,7 +69,8 @@ class SearchComponent extends Component {
     const inputProps = {
       placeholder: 'Search for a store',
       value,
-      onChange: this.onChange.bind(this)
+      onChange: this.onChange.bind(this),
+      id:"text-field"
     };
     return (
       <Autosuggest
