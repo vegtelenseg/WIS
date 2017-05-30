@@ -3,7 +3,6 @@ import Utility from './Utility';
 import '../Generated-CSS/Search.css';
 import Autosuggest from 'react-autosuggest';
 
-const stores = require('../Shared/stores.json');
 
 class SearchComponent extends Component {
   constructor() {
@@ -13,49 +12,26 @@ class SearchComponent extends Component {
       suggestions: []
     };
   }
-  getSuggestionValue = suggestion => suggestion.name;
-  getSuggestions(value) {
-    const inputValue = value.trim().toLowerCase();
-    return inputValue.length === 0 ? [] : stores.filter(store =>
-      store.name.toLowerCase().includes(inputValue) ||
-      store.location.toLowerCase().includes(inputValue)
-    );
-  };
-  onChange(eventRaiser, { newValue }) {
-    this.setState({
-      value: newValue
-    });
-  };
-  onSuggestionsFetchRequested({ value }){
-    this.setState({
-      suggestions: this.getSuggestions(value)
-    });
-  };
-  onSuggestionsClearRequested() {
-    this.setState({
-      suggestions: []
-    });
-  };
-  validateQueryAndSearch(query) {
-    query = query.name; // Might need to search by location
-    if (typeof query !== undefined && query !== null) {
-      query = query.replace(/[ ]{1,}/g, ' ').trim();
-      if (query.length > 0) {
-        this.searchEngine(query);
-      }
+  getProduct(query){
+    if (Utility.validateQuery(query)) {
+      Utility.findProduct(query, (foods) => {
+        this.setState({
+          foods: foods.slice(0, 25)
+        });
+      });
     }
   }
-  searchEngine(query){
-    Utility.search(query, (foods) => {
-      this.setState({
-        foods: foods.slice(0, 25)
+  getStore(query) {
+    if (Utility.validateQuery(query)) {
+      Utility.findStore(query, (store) => {
+        console.log("Found store: " + store);
       });
-    });
+    }
   }
   renderSuggestion(suggestion){
     if (typeof suggestion !== undefined && suggestion !== null) {
       return (
-        <div id="suggestions" onClick={() => this.validateQueryAndSearch(suggestion)}>
+        <div id="suggestions" onClick={() => this.getStore(suggestion)}>
           <div className="store-name">
             {suggestion.name}
           </div>
@@ -71,15 +47,15 @@ class SearchComponent extends Component {
     const inputProps = {
       placeholder: 'Search for a store',
       value,
-      onChange: this.onChange.bind(this),
+      onChange: Utility.onChange.bind(this),
       id:"text-field"
     };
     return (
       <Autosuggest
         suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(this)}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested.bind(this)}
-        getSuggestionValue={this.getSuggestionValue}
+        onSuggestionsFetchRequested={Utility.onSuggestionsFetchRequested.bind(this)}
+        onSuggestionsClearRequested={Utility.onSuggestionsClearRequested.bind(this)}
+        getSuggestionValue={Utility.getSuggestionValue}
         renderSuggestion={this.renderSuggestion.bind(this)}
         inputProps={inputProps}
       />
