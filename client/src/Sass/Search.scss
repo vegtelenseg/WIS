@@ -13,14 +13,42 @@
     content: '\1F50D';
     width: 30px;
     height: 30px;
+    display: inline-block;
+    position: absolute;
   }
 }
-#autosuggest {
+#suggestions {
   position: relative;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  margin: 0 auto;
   text-align: center;
   padding: 5px 0;
-  top: 22vh;
+  top: 27vh;
+  background-color: rgba(125, 125, 125, .4);
+  transition: .5s all;
+  .store-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    &:after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background-color: red;
+      display: block;
+      @include translateIn3d;
+      position: absolute;
+    }
+    .store-location {
+      font-style: italic;
+      font-weight: bold;
+      &:after {
+        content: '';
+        width: 100px;
+        height: 1px;
+        background-color: red;
+        @include translateIn3d;
+        position: absolute;
+      }
+    }
+  }
 }

@@ -7,7 +7,8 @@ function search(query, callback) {
     'Accept': 'application/json',
     'Access-Control-Allow-Origin': '*'
   });
-  return fetch(`api/food?q=${query}`, headers).then(checkStatus)
+  return fetch(`api/food?q=${query}`, headers)
+    .then(checkStatus)
     .then(parseJSON)
     .then(callback);
 }

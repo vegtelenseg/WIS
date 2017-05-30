@@ -53,16 +53,18 @@ class SearchComponent extends Component {
     });
   }
   renderSuggestion(suggestion){
-    return (
-      <div id="autosuggest" onClick={() => this.validateQueryAndSearch(suggestion)}>
-        <div className="store-name">
-          {suggestion.name}
+    if (typeof suggestion !== undefined && suggestion !== null) {
+      return (
+        <div id="suggestions" onClick={() => this.validateQueryAndSearch(suggestion)}>
+          <div className="store-name">
+            {suggestion.name}
+          </div>
+          <div className="store-location">
+            {suggestion.location}
+          </div>
         </div>
-        <div className="store-location">
-          {suggestion.location}
-        </div>
-      </div>
-    );
+      );
+    }
   }
   render() {
     const { value, suggestions } = this.state;
