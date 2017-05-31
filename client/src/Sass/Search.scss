@@ -23,32 +23,36 @@
   margin: 0 auto;
   text-align: center;
   padding: 5px 0;
+  margin: 5px 0;
   top: 27vh;
   background-color: rgba(125, 125, 125, .4);
   transition: .5s all;
   .store-name {
     font-weight: bold;
-    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 4px;
     &:after {
       content: '';
       width: 40px;
       height: 1px;
       background-color: red;
       display: block;
+      margin-top:5px;
+      @include translateIn3d;
+      position: relative;
+    }
+  }
+  .store-location {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .85em;
+    &:after {
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: white;
       @include translateIn3d;
       position: absolute;
-    }
-    .store-location {
-      font-style: italic;
-      font-weight: bold;
-      &:after {
-        content: '';
-        width: 100px;
-        height: 1px;
-        background-color: red;
-        @include translateIn3d;
-        position: absolute;
-      }
+      top: 52px;
     }
   }
 }

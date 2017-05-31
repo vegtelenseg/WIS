@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === config.ENV.PROD) {
 }
 
 app.use('/api/food', service({Model: Product}));
-app.get('/api/find-store', (res, req) => {
+app.get('/api/find-store', (req, res) => {
   console.log("In the server. Searching for store: " + req.query.q);
   return res.json(req.query.q);
 })

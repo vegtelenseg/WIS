@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Utility from './Utility';
 import '../Generated-CSS/Search.css';
 import Autosuggest from 'react-autosuggest';
 
+const Utility = require('../Shared/scripts/utility.js');
 
 class SearchComponent extends Component {
   constructor() {
@@ -22,6 +22,7 @@ class SearchComponent extends Component {
     }
   }
   getStore(query) {
+    console.log("In search Component getStore: " + query.name);
     if (Utility.validateQuery(query)) {
       Utility.findStore(query, (store) => {
         console.log("Found store: " + store);
@@ -47,14 +48,14 @@ class SearchComponent extends Component {
     const inputProps = {
       placeholder: 'Search for a store',
       value,
-      onChange: Utility.onChange.bind(this),
+      onChange: Utility.onKeyPressEventListener.bind(this),
       id:"text-field"
     };
     return (
       <Autosuggest
         suggestions={suggestions}
-        onSuggestionsFetchRequested={Utility.onSuggestionsFetchRequested.bind(this)}
-        onSuggestionsClearRequested={Utility.onSuggestionsClearRequested.bind(this)}
+        onSuggestionsFetchRequested={Utility.fetchSuggestions.bind(this)}
+        onSuggestionsClearRequested={Utility.clearSuggestions.bind(this)}
         getSuggestionValue={Utility.getSuggestionValue}
         renderSuggestion={this.renderSuggestion.bind(this)}
         inputProps={inputProps}
