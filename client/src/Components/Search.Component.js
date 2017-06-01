@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../Generated-CSS/Search.css';
 import Autosuggest from 'react-autosuggest';
+import { Link } from 'react-router-dom';
 
 const Utility = require('../Shared/scripts/utility.js');
 
@@ -22,7 +23,6 @@ class SearchComponent extends Component {
     }
   }
   getStore(query) {
-    console.log("In search Component getStore: " + query.name);
     if (Utility.validateQuery(query)) {
       Utility.findStore(query, (store) => {
         console.log("Found store: " + store);
@@ -30,16 +30,16 @@ class SearchComponent extends Component {
     }
   }
   renderSuggestion(suggestion){
-    if (typeof suggestion !== undefined && suggestion !== null) {
+    if (suggestion !== undefined && suggestion !== null) {
       return (
-        <div id="suggestions" onClick={() => this.getStore(suggestion)}>
+        <Link to={{pathname: '/products', query: suggestion.name}} id="suggestions">
           <div className="store-name">
             {suggestion.name}
           </div>
           <div className="store-location">
             {suggestion.location}
           </div>
-        </div>
+        </Link>
       );
     }
   }
@@ -53,6 +53,7 @@ class SearchComponent extends Component {
     };
     return (
       <Autosuggest
+
         suggestions={suggestions}
         onSuggestionsFetchRequested={Utility.fetchSuggestions.bind(this)}
         onSuggestionsClearRequested={Utility.clearSuggestions.bind(this)}

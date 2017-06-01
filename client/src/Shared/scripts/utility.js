@@ -27,7 +27,7 @@ export function getProduct(query, callback) {
 export const getSuggestionValue = suggestion => suggestion.name;
 
 export function getSuggestions(value) {
-  if (typeof value !== undefined && value !== null) {
+  if (value !== undefined && value !== null) {
     let inputValue = value.trim().toLowerCase();
     return inputValue.length === 0 ? [] : stores.filter(store =>
       store.name.toLowerCase().includes(inputValue) ||

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppComponent from './Components/App.Component';
+import AppRoutes from './Components/Routes.Component';
 
 ReactDOM.render(
-  <AppComponent name="Pick 'n' Pay"/>,
+  <AppRoutes/>,
   document.getElementById('root')
 );

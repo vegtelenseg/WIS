@@ -18,9 +18,12 @@
   }
 }
 #suggestions {
+  display:block;
   position: relative;
   width: 100%;
   margin: 0 auto;
+  text-decoration: none;
+  color: inherit;
   text-align: center;
   padding: 5px 0;
   margin: 5px 0;

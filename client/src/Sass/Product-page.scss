@@ -1,0 +1,16 @@
+@import "./_mixins.scss";
+@import "../Generated-CSS/Search.css";
+
+#product-page {
+  height: 100%;
+  background-color: grey;
+  position: absolute;
+  width: 100%;
+  transition: .5s all;
+  #back-home {
+    position: absolute;
+    text-decoration: none;
+    @include translateIn3d;
+    top: 5%;
+  }
+}

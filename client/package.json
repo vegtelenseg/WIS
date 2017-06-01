@@ -10,8 +10,7 @@
     "react": "^15.5.4",
     "react-autosuggest": "^9.0.1",
     "react-dom": "^15.5.4",
-    "react-search-input": "^0.10.4",
-    "redux": "^3.6.0",
+    "react-router-dom": "^4.1.1",
     "sass": "^0.5.0",
     "whatwg-fetch": "^2.0.3"
   },
@@ -26,7 +25,7 @@
     "server": "nodemon ../server/app.js",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p server watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
+    "build": "npm run build-css && react-scripts build --history-api-fallback",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
