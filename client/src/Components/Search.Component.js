@@ -13,17 +13,8 @@ class SearchComponent extends Component {
       suggestions: []
     };
   }
-  getProduct(query){
-    if (Utility.validateQuery(query)) {
-      Utility.findProduct(query, (foods) => {
-        this.setState({
-          foods: foods.slice(0, 25)
-        });
-      });
-    }
-  }
   getStore(query) {
-    if (Utility.validateQuery(query)) {
+    if (Utility.validateQuery(query.name)) {
       Utility.findStore(query, (store) => {
         console.log("Found store: " + store);
       });

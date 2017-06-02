@@ -17,7 +17,8 @@ export function findStore(query, callback) {
     }
 }
 
-export function getProduct(query, callback) {
+export function findProduct(query, callback) {
+  console.log("At the backend: " + query);
   return fetch(`api/food?q=${query}`, headers)
     .then(validator.checkStatus)
     .then(validator.parseJSON)
@@ -52,9 +53,7 @@ export function clearSuggestions() {
 };
 
 export function validateQuery(query) {
-  console.log(query.name + " " + query.location);
-  query = query.name; // Might need to search by location
-  if (typeof query !== undefined && query !== null) {
+  if (query !== undefined && query !== null) {
     query = query.replace(/[ ]{1,}/g, ' ').trim();
     if (query.length > 0) {
       return true;
