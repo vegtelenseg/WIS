@@ -26,12 +26,11 @@ if (process.env.NODE_ENV === config.ENV.PROD) {
   app.use(express.static('src/build'));
 }
 
-app.use('/api/food', service({Model: Product}));
 app.get('/api/find-store', (req, res) => {
   console.log("In the server. Searching for store: " + req.query.q);
   return res.json(req.query.q);
 })
-/*app.get('/api/food', (req, res) => {
+app.get('/api/food', (req, res) => {
   const param = req.query.q;
   if (!param) {
     res.json({
@@ -51,7 +50,7 @@ app.get('/api/find-store', (req, res) => {
           }
       });
     }
-});*/
+});
 app.listen(app.get('port'), () => {
     console.log(`The server is running at http://localhost:${app.get('port')}`)
 });

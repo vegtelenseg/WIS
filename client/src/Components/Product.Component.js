@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../Generated-CSS/Product-page.css';
 var mockProducts = require('../Shared/json-data/generated.json');
+import { WatchedFoods } from './WatchedFoods.Component';
 //    app = require('../Shared/app.json');
 const Utility = require('../Shared/scripts/utility.js');
 
@@ -21,7 +22,6 @@ class ProductComponent extends Component {
     if (query !== undefined && query !== null) {
       if (Utility.validateQuery(query)) {
         Utility.findProduct(query, (foods) => {
-          console.log("These are the found products: " + foods);
           this.setState({
             foods: foods.slice(0, 25)
           });
