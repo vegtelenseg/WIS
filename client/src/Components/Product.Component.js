@@ -15,7 +15,7 @@ class ProductComponent extends Component {
       console.log("It was found defined " + store);
       this.setState({
         prod: <div id="product-page">
-                <Link to={'/'} id="back-home"><p>Search for store</p></Link>
+                <Link to={'/'} id="back-home"><p>switch store</p></Link>
                 <input id="text-field" placeholder={"Search " + this.props.location.query + "'s products"}/>
               </div>
       });
@@ -23,6 +23,7 @@ class ProductComponent extends Component {
     }
     else {
       // Go back, no store was selected.
+      alert("Please select a store");
       this.props.history.push('/');
     }
   }

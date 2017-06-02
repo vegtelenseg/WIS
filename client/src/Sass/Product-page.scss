@@ -7,10 +7,21 @@
   position: absolute;
   width: 100%;
   transition: .5s all;
+  top:0;
+  bottom: 0;
   #back-home {
     position: absolute;
     text-decoration: none;
+    color: white;
+    padding: 10px;
+    background-color: #508cb5;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    box-shadow: 1px 1px 10px black;
     @include translateIn3d;
-    top: 5%;
+    top: 8.5%;
   }
+}
+* {
+  box-sizing: border-box;
 }
