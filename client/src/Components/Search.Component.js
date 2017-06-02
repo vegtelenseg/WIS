@@ -34,17 +34,24 @@ class SearchComponent extends Component {
       );
     }
   }
+  handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      console.log("Enter pushed: \n" + location.href);
+      location.href += 'products';
+    }
+  }
   render() {
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: 'Search for a store',
       value,
       onChange: Utility.onKeyPressEventListener.bind(this),
+      onKeyPress: this.handleEnter,
       id:"text-field"
     };
     return (
       <Autosuggest
-
+        highlightFirstSuggestion={true}
         suggestions={suggestions}
         onSuggestionsFetchRequested={Utility.fetchSuggestions.bind(this)}
         onSuggestionsClearRequested={Utility.clearSuggestions.bind(this)}

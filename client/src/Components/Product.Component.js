@@ -12,6 +12,7 @@ class ProductComponent extends Component {
     this.state = {
       products: mockProducts,
       watchedFoods: [],
+      foundfoods: [],
       inputValue: '',
       foods: []
     }
@@ -22,6 +23,17 @@ class ProductComponent extends Component {
     if (query !== undefined && query !== null) {
       if (Utility.validateQuery(query)) {
         Utility.findProduct(query, (foods) => {
+          this.state.foundfoods = foods.map((food, idx) => {
+            return (
+              <div key={idx}>
+                <h2>{food.productName}</h2>
+                <h4>{food.productBrand}</h4>
+                <p>{food.productBestBefore}</p>
+                <p>{food.productQty}</p>
+                <p>{food.productCheckoutRate}</p>
+              </div>
+            );
+          });
           this.setState({
             foods: foods.slice(0, 25)
           });
@@ -72,14 +84,15 @@ class ProductComponent extends Component {
     const { watchedFoods } = this.state;
     return (
       <div id="product-page">
-              <Link to={'/'} id="back-home"><p>switch store</p></Link>
-              <input id="text-field"
-                value={this.state.inputValue}
-                onChange={this.updateInputValue}
-                onKeyPress={this.handleEnter}
-                placeholder={"Search " + this.props.location.query + "'s products"}
-                />
-            </div>
+        <Link to={'/'} id="back-home"><p>switch store</p></Link>
+        <input id="text-field"
+          value={this.state.inputValue}
+          onChange={this.updateInputValue}
+          onKeyPress={this.handleEnter}
+          placeholder={"Search " + this.props.location.query + "'s products"}
+          />
+          <div id="found-foods">{this.state.foundfoods}</div>
+      </div>
     );
   }
 }
