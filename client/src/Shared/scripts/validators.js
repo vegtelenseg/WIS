@@ -25,7 +25,7 @@ export function parseJSON(response) {
 }
 
 function throwError(response) {
-  const error = new Error(`HTTP Error ${response.statusText} ${response.status}`);
+  const error = new Error(`HTTP Error: Could not connect to the database.\nReturned status: ${response.status}`);
   error.status = response.statusText;
   error.response = response;
   console.log(error);
