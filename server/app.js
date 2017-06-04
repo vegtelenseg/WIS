@@ -7,7 +7,7 @@ let feathers = require('feathers'),
     Product = require('./models/Product.Model.js'),
     mongo = require('mongod'),
     mongoose = require('mongoose'),
-    db = mongoose.connect(config.DB.CONNECTION_STRING, config.DB.CONNECTION_OPTS);
+    db = mongoose.connect(config.DB.CONNECTION_STRING + 'products', config.DB.CONNECTION_OPTS);
 
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -27,9 +27,18 @@ if (process.env.NODE_ENV === config.ENV.PROD) {
 }
 
 app.get('/api/find-store', (req, res) => {
-  console.log("In the server. Searching for store: " + req.query.q);
+  db = mongoose.disconnect().then(function() {
+    console.log("Trying to connect at: " + config.DB.CONNECTION_STRING + req.query.q);
+    db = mongoose.connect(config.DB.CONNECTION_STRING + req.query.q, config.DB.CONNECTION_OPTS);
+    db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', () => {
+  console.log("Sucessfully connectected to database");
+  });
+  });
+
   return res.json(req.query.q);
-})
+});
 app.get('/api/food', (req, res) => {
   const param = req.query.q;
   if (!param) {

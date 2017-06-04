@@ -8,9 +8,9 @@ const headers = new Headers({
 });
 
 export function findStore(query, callback) {
-  console.log("In Utility: " + query.name);
+  console.log("In Utility: " + query);
   if (typeof query !== undefined && query !== null) {
-    return fetch(`api/find-store?q=${query.name}`, headers)
+    return fetch(`api/find-store?q=${query}`, headers)
       .then(validator.checkStatus)
       .then(validator.parseJSON)
       .then(callback);
@@ -18,7 +18,6 @@ export function findStore(query, callback) {
 }
 
 export function findProduct(query, callback) {
-  console.log("At the backend: " + query);
   return fetch(`api/food?q=${query}`, headers)
     .then(validator.checkStatus)
     .then(validator.parseJSON)

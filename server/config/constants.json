@@ -1,6 +1,6 @@
 {
   "DB" : {
-    "CONNECTION_STRING": "mongodb://simzam:7bitsfacebook7@ds131151.mlab.com:31151/products",
+    "CONNECTION_STRING": "mongodb://simzam:7bitsfacebook7@ds131151.mlab.com:31151/",
     "CONNECTION_OPTS": {
       "server": {
         "socketOptions": {

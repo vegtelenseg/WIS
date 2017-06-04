@@ -4,9 +4,8 @@ import '../Generated-CSS/WatchedFoods.css';
 export default function WatchedFoods(props) {
   const foods = props.watchedFood;
   let foodRows;
-  console.log("The props: " + foods);
   if (foods !== undefined && foods !== null) {
-  foodRows = foods.map((food, idx) => {
+    foodRows = foods.map((food, idx) => {
       return (
         <div className="food-parent" key={idx} onClick={() => props.unwatchFood(idx)}>
           <div className="food-container">

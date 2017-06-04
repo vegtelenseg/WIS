@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SideNavComponent from './SideNav.Component';
-import '../Generated-CSS/Product-page.css';
-var mockProducts = require('../Shared/json-data/generated.json');
-//    app = require('../Shared/app.json');
-const Utility = require('../Shared/scripts/utility.js');
 import WatchedFoods  from './WatchedFoods.Component';
+import '../Generated-CSS/Product-page.css';
+
+const Utility = require('../Shared/scripts/utility.js');
 
 class ProductComponent extends Component {
   constructor() {
     super();
     this.state = {
-      products: mockProducts,
       watchedFoods: [],
       foundfoods: [],
       inputValue: '',
-      foods: []
     }
     this.updateInputValue = this.updateInputValue.bind(this)
   }
   getProduct = (query) => {
-    console.log("The query " + query);
     if (query !== undefined && query !== null) {
       if (Utility.validateQuery(query)) {
         Utility.findProduct(query, (foods) => {
@@ -38,15 +33,11 @@ class ProductComponent extends Component {
               }
             )
           });
-          this.setState({
-            foods: foods.slice(0, 25)
-          });
         });
       }
     }
   }
   unwatchFood = (itemIndex) => {
-    console.log("Unwatching...");
     const filteredFoods = this.state.watchedFoods.filter(
       (item, idx) => itemIndex !== idx
     );
@@ -72,6 +63,10 @@ class ProductComponent extends Component {
   }
   componentWillMount = () => {
     const store = this.props.location.query;
+    console.log("Component will mount " + store);
+    Utility.findStore(store, (store) => {
+      console.log("Found store: " + store)
+    });
     if (store !== null && store !== undefined) {
       return true;
     }
