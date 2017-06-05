@@ -23,11 +23,11 @@ class ProductComponent extends Component {
             foundfoods: foods.map((food, idx) => {
             return (
               <div key={idx} onClick={() => this.watchFood(food)}>
-                <h2>{food.productName}</h2>
-                <h4>{food.productBrand}</h4>
+                <h2>Item: {food.productName}</h2>
+                <h4>Brand: {food.productBrand}</h4>
                 <p>{food.productBestBefore}</p>
-                <p>{food.productQty}</p>
-                <p>{food.productCheckoutRate}</p>
+                <p>In Stock: {food.productQty}</p>
+                <p>{food.productCheckoutRate} items bought every hour</p>
               </div>
                 );
               }

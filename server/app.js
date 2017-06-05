@@ -44,6 +44,8 @@ reconnectToDB = (store) => {
         console.log("Trying to connect at: " + config.DB.CONNECTION_STRING + config.DB.USAVE_DB);
         message = "Successfully connected to the " + store + " database";
         break;
+      case 'undefined':
+        break;
       default:
         db = mongoose.connect(config.DB.CONNECTION_STRING + config.DB.DEFAULT_DB, config.DB.CONNECTION_OPTS);
         message = "Successfully connected to the default database"
@@ -83,6 +85,17 @@ app.get('/api/food', (req, res) => {
           break;
       case 'usave' :
         //Use another model here to query
+        Product.find({
+          $text: { $search: param }
+        }, (error, product)  => {
+          if (error) {
+            console.log(`DB ERROR => ${error}`);
+            reconnectToDB(storeList[0]);
+          }
+          else if(product !== null && typeof product !== undefined ) {
+            return res.json(product);
+          }
+        });
         console.log('To use the Usave Model');
         break;
       default:
