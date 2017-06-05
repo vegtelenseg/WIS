@@ -3,7 +3,7 @@ let mongoose	= require('mongoose'),
     productSchema = new Schema({
       category : { type: String, trim: true },
       productId: { type: Number, trim: true },
-      productName : { type: String, trim: true, default: 'yogurt' },
+      productName : { type: String, trim: true, default: 'yogurt', text: true },
       productBrand: { type: String, trim: true },
       productBestBefore: { type: Date },
       productQty: { type: Number, min : 0 },

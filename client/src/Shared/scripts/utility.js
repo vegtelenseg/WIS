@@ -8,7 +8,6 @@ const headers = new Headers({
 });
 
 export function findStore(query, callback) {
-  console.log("In Utility: " + query);
   if (typeof query !== undefined && query !== null) {
     return fetch(`api/find-store?q=${query}`, headers)
       .then(validator.checkStatus)

@@ -1,6 +1,9 @@
 {
   "DB" : {
-    "CONNECTION_STRING": "mongodb://simzam:7bitsfacebook7@ds131151.mlab.com:31151/",
+    "CONNECTION_STRING": "mongodb://simzam:7bitsfacebook7@ds",
+    "DEFAULT_DB": "131151.mlab.com:31151/products",
+    "TRUWORTHS_DB": "163681.mlab.com:63681/truworths",
+    "USAVE_DB": "163301.mlab.com:63301/usave",
     "CONNECTION_OPTS": {
       "server": {
         "socketOptions": {

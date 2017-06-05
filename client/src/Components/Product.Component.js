@@ -63,7 +63,6 @@ class ProductComponent extends Component {
   }
   componentWillMount = () => {
     const store = this.props.location.query;
-    console.log("Component will mount " + store);
     Utility.findStore(store, (store) => {
       console.log("Found store: " + store)
     });

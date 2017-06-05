@@ -14,6 +14,7 @@ class SearchComponent extends Component {
     };
   }
   getStore(query) {
+    console.log("In getStore: " + query);
     if (Utility.validateQuery(query.name)) {
       Utility.findStore(query, (store) => {
         console.log("Found store: " + store);
