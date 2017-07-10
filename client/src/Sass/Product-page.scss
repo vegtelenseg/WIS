@@ -20,6 +20,7 @@
     box-shadow: 1px 1px 10px black;
     @include translateIn3d;
     top: 8.5%;
+    z-index: 9999;
   }
 }
 #found-foods {

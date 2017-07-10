@@ -67,11 +67,23 @@ class ProductComponent extends Component {
       console.log("Found store: " + store)
     });
     if (store !== null && store !== undefined) {
+      for (var i = 0; i < localStorage.length; i++) {
+        this.state.watchedFoods.push(localStorage.getItem(localStorage.key(i)));
+        console.log("Got by key " + JSON.stringify(localStorage.getItem(localStorage.key(i))));
+      }
       return true;
     }
     else {
       // Go back, no store was selected.
       this.props.history.push('/');
+    }
+  }
+  componentWillUnmount = () => {
+    if (this.state.watchedFoods) {
+      console.log('Watched foods ' + this.state.watchedFoods);
+      this.state.watchedFoods.forEach((food) => {
+        localStorage.setItem(JSON.stringify(food._id), food);
+      })
     }
   }
   handleEnter = (eventRaiser) => {
@@ -80,9 +92,10 @@ class ProductComponent extends Component {
     }
   }
   render() {
+
     return (
       <div id="product-page">
-        <Link to={'/'} id="back-home"><p>switch store</p></Link>
+        <Link to={{pathname: '/'}} id="back-home"><p>switch store</p></Link>
         <input id="text-field"
           value={this.state.inputValue}
           onChange={this.updateInputValue}
