@@ -1,19 +1,17 @@
-let feathers = require('feathers'),
-    socketio = require('feathers-socketio'),
-    rest = require('feathers-rest'),
-    service = require('feathers-mongoose'),
-    bodyParser = require('body-parser'),
+let bodyParser = require('body-parser');
+
+let app = require('express')()
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({extended: true})),
     config = require('./config/constants.json'),
     Product = require('./models/Product.Model.js'),
     mongo = require('mongod'),
     mongoose = require('mongoose'),
-    storeList = [];
+    storeList = [],
+    server = require('http').createServer(app),
+    io = require('socket.io')(server);
 
 mongoose.Promise = global.Promise;
-const app = feathers()
-  .configure(rest())
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded({extended: true}));
 
 app.set('port', (process.env.PORT || config.SERVER.PORT));
 
@@ -113,6 +111,17 @@ app.get('/api/food', (req, res) => {
       }
     }
 });
-app.listen(app.get('port'), () => {
-    console.log(`The server is running at http://localhost:${app.get('port')}`)
+/*app.listen(app.get('port'), () => {
+});*/
+server.listen(config.SERVER.PORT, () => {
+  console.log(`The server is running at http://localhost:${config.SERVER.PORT}`)
+});
+io.on('connection', function(client){
+  console.log("Successfully connected to the server via socket transport :)");
+  client.on('event', function(data){
+    console.log("Successfully raised an event to the server via socket transport :)");
+  });
+  client.on('disconnect', function(){
+    console.log("On disconnect of course");
+  });
 });

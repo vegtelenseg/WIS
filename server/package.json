@@ -13,10 +13,12 @@
     "feathers-rest": "^1.7.2",
     "feathers-socketio": "^2.0.0",
     "fs": "0.0.2",
+    "http": "0.0.0",
     "mongod": "^2.0.0",
     "mongodb": "^2.2.26",
     "mongodb-core": "^2.1.10",
     "mongoose": "^4.9.7",
+    "socket.io": "^2.0.3",
     "sql.js": "0.3.2"
   },
   "scripts": {
