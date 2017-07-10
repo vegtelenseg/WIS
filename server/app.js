@@ -122,6 +122,6 @@ io.on('connection', function(client){
     console.log("Successfully raised an event to the server via socket transport :)");
   });
   client.on('disconnect', function(){
-    console.log("On disconnect of course");
+    console.log("Disconnecting socket from the server");
   });
 });
