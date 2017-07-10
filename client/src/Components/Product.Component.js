@@ -41,17 +41,28 @@ class ProductComponent extends Component {
     const filteredFoods = this.state.watchedFoods.filter(
       (item, idx) => itemIndex !== idx
     );
+    let itemKey = localStorage.key(itemIndex);
+    localStorage.removeItem(itemKey);
     this.setState({
       watchedFoods: filteredFoods
     });
   }
 
+  /**
+  * Captures the current state and locally persists it.
+  * If state is not set, it gracefully ignores this component unmounting
+  **/
   watchFood = (food) => {
+    localStorage.setItem(food._id, JSON.stringify(food));
       const newFoods = this.state.watchedFoods.concat(food);
       this.setState({
         watchedFoods: newFoods
       });
   }
+
+  /**
+  * Updates the value of the search box if any.
+  **/
   updateInputValue = (eventRaiser) => {
     eventRaiser.preventDefault();
     let val = eventRaiser.target.value;
@@ -61,15 +72,23 @@ class ProductComponent extends Component {
       });
     }
   }
+
+  /**
+  * Finds the seclected store and loads up the previously
+  * watched items if there were any, otherwise redirects to
+  * the home page.
+  **/
   componentWillMount = () => {
     const store = this.props.location.query;
-    Utility.findStore(store, (store) => {
-      console.log("Found store: " + store)
-    });
     if (store !== null && store !== undefined) {
+      Utility.findStore(store, (store) => {
+        console.log("Found store: " + store)
+      });
       for (var i = 0; i < localStorage.length; i++) {
-        this.state.watchedFoods.push(localStorage.getItem(localStorage.key(i)));
-        console.log("Got by key " + JSON.stringify(localStorage.getItem(localStorage.key(i))));
+        let itemKey = localStorage.key(i),
+            item = localStorage.getItem(itemKey),
+            parsedItem = JSON.parse(item);
+        this.state.watchedFoods.push(parsedItem);
       }
       return true;
     }
@@ -78,14 +97,7 @@ class ProductComponent extends Component {
       this.props.history.push('/');
     }
   }
-  componentWillUnmount = () => {
-    if (this.state.watchedFoods) {
-      console.log('Watched foods ' + this.state.watchedFoods);
-      this.state.watchedFoods.forEach((food) => {
-        localStorage.setItem(JSON.stringify(food._id), food);
-      })
-    }
-  }
+
   handleEnter = (eventRaiser) => {
     if (eventRaiser.key === 'Enter') {
       this.getProduct(this.state.inputValue);
