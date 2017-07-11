@@ -24,6 +24,26 @@ let app = require('express')()
         messagingSenderId: "509953319531"
       };
       firebase.initializeApp(baseConfig);
+      var admin = require("firebase-admin");
+
+      // Fetch the service account key JSON file contents
+      var serviceAccount = require("./config/foodspy-fa40e85ea7b6.json");
+
+      // Initialize the app with a service account, granting admin privileges
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        databaseURL: "https://foodspy-a3640.firebaseio.com"
+      });
+
+      // As an admin, the app has access to read and write all data, regardless of Security Rules
+      var db = admin.database();
+      var ref = db.ref("/");
+      ref.once("value", function(snapshot) {
+        console.log(snapshot.val());
+      });
+      ref.orderByChild("productCheckoutRate").on("child_changed", function(snapshot) {
+        console.log("The snapshot changed dude: " + JSON.stringify(snapshot.val().productCheckoutRate));
+      });
 mongoose.Promise = global.Promise;
 
 app.set('port', (process.env.PORT || config.SERVER.PORT));
@@ -36,7 +56,6 @@ app.get('/api/find-store', (req, res) => {
   const store = req.query.q.toLowerCase();
   storeList = [];
   storeList.push(store);
-  console.log("Stores pushed: " + storeList);
   //reconnectToDB(store)
   return res.json(req.query.q);
 });
@@ -72,13 +91,7 @@ reconnectToDB = (store) => {
 }
 
 app.use('/api/food', (req, res) => {
-  console.log("On the server for real");
-  firebase.database().ref('/0').update({
-    category: 'The testing string'
-  });
-  res.json({
-      message: `You're logged in as  with Firebase UID: `
-  });
+
   /*const param = req.query.q;
   if (!param) {
     res.json({
