@@ -9,8 +9,21 @@ let app = require('express')()
     mongoose = require('mongoose'),
     storeList = [],
     server = require('http').createServer(app),
-    io = require('socket.io')(server);
-
+    io = require('socket.io')(server),
+    firebase = require('firebase'),
+    firebaseMiddleware = require('express-firebase-middleware');
+    app.use('/api', firebaseMiddleware.auth);
+      require('firebase/auth');
+      // Initialize Firebase for the application
+      var baseConfig = {
+        apiKey: "AIzaSyCOCVzBz1ixPxBmXDJTziQ_vRB62pEQsmw",
+        authDomain: "foodspy-a3640.firebaseapp.com",
+        databaseURL: "https://foodspy-a3640.firebaseio.com",
+        projectId: "foodspy-a3640",
+        storageBucket: "foodspy-a3640.appspot.com",
+        messagingSenderId: "509953319531"
+      };
+      firebase.initializeApp(baseConfig);
 mongoose.Promise = global.Promise;
 
 app.set('port', (process.env.PORT || config.SERVER.PORT));
@@ -24,7 +37,7 @@ app.get('/api/find-store', (req, res) => {
   storeList = [];
   storeList.push(store);
   console.log("Stores pushed: " + storeList);
-  reconnectToDB(store)
+  //reconnectToDB(store)
   return res.json(req.query.q);
 });
 
@@ -39,6 +52,7 @@ reconnectToDB = (store) => {
         break;
       case 'usave':
         db = mongoose.connect(config.DB.CONNECTION_STRING + config.DB.USAVE_DB, config.DB.CONNECTION_OPTS);
+        watcher = mongoWatch(config.DB.CONNECTION_STRING + config.DB.USAVE_DB, config.DB.CONNECTION_OPTS);
         console.log("Trying to connect at: " + config.DB.CONNECTION_STRING + config.DB.USAVE_DB);
         message = "Successfully connected to the " + store + " database";
         break;
@@ -57,8 +71,15 @@ reconnectToDB = (store) => {
   });
 }
 
-app.get('/api/food', (req, res) => {
-  const param = req.query.q;
+app.use('/api/food', (req, res) => {
+  console.log("On the server for real");
+  firebase.database().ref('/0').update({
+    category: 'The testing string'
+  });
+  res.json({
+      message: `You're logged in as  with Firebase UID: `
+  });
+  /*const param = req.query.q;
   if (!param) {
     res.json({
       error: "Missing the parameter to search for"
@@ -109,18 +130,18 @@ app.get('/api/food', (req, res) => {
         });
         break;
       }
-    }
+    }*/
 });
+
+
 /*app.listen(app.get('port'), () => {
 });*/
 server.listen(config.SERVER.PORT, () => {
   console.log(`The server is running at http://localhost:${config.SERVER.PORT}`)
 });
-io.on('connection', function(client){
+io.sockets.on('connection', function(client){
   console.log("Successfully connected to the server via socket transport :)");
-  client.on('event', function(data){
-    console.log("Successfully raised an event to the server via socket transport :)");
-  });
+  client.emit('news', {hello: 'yo yo yo'});
   client.on('disconnect', function(){
     console.log("Disconnecting socket from the server");
   });

@@ -4,6 +4,7 @@
     "DEFAULT_DB": "131151.mlab.com:31151/products",
     "TRUWORTHS_DB": "163681.mlab.com:63681/truworths",
     "USAVE_DB": "163301.mlab.com:63301/usave",
+    "DEFAULT_COLLECTION": "products",
     "CONNECTION_OPTS": {
       "server": {
         "socketOptions": {

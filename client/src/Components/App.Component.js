@@ -3,8 +3,11 @@ import SearchComponent from './Search.Component.js';
 import '../Generated-CSS/grid.css';
 import io from 'socket.io-client';
 
-io('http://localhost:4300');
+var socket = io.connect('http://localhost:4300');
+socket.on('news', (data) => {
+  console.log("Some changes: " + data);
 
+});
 class AppComponent extends Component {
     constructor() {
       super();
