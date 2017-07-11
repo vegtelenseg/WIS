@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 import WatchedFoods  from './WatchedFoods.Component';
 import '../Generated-CSS/Product-page.css';
 
+import io from 'socket.io-client';
+
+var socket = io.connect('http://localhost:4300');
+socket.on('product changed', (data) => {
+  console.log("Some changes Poi: " + data.hello);
+
+});
+
 const Utility = require('../Shared/scripts/utility.js');
 
 class ProductComponent extends Component {
@@ -46,7 +54,7 @@ class ProductComponent extends Component {
     this.setState({
       watchedFoods: filteredFoods
     });
-  }
+   }
 
   /**
   * Captures the current state and locally persists it.

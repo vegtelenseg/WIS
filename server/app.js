@@ -43,7 +43,7 @@ let app = require('express')()
       });
       ref.on("child_changed", function(snapshot) {
         console.log("The snapshot changed dude: " + JSON.stringify(snapshot.val()));
-        io.emit('news', {hello: snapshot.val()});
+        io.emit('product changed', {hello: snapshot.val()});
       });
 mongoose.Promise = global.Promise;
 
@@ -92,7 +92,9 @@ reconnectToDB = (store) => {
 }
 
 app.use('/api/food', (req, res) => {
-
+  return admin.database().ref("/").orderByChild("productName").equalTo(req.query.q).on("value", function(snapshot) {
+      console.log("Found this typa food: " + snapshot.val());
+  });
   /*const param = req.query.q;
   if (!param) {
     res.json({
