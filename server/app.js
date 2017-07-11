@@ -41,8 +41,9 @@ let app = require('express')()
       ref.once("value", function(snapshot) {
         console.log(snapshot.val());
       });
-      ref.orderByChild("productCheckoutRate").on("child_changed", function(snapshot) {
-        console.log("The snapshot changed dude: " + JSON.stringify(snapshot.val().productCheckoutRate));
+      ref.on("child_changed", function(snapshot) {
+        console.log("The snapshot changed dude: " + JSON.stringify(snapshot.val()));
+        io.emit('news', {hello: snapshot.val()});
       });
 mongoose.Promise = global.Promise;
 
