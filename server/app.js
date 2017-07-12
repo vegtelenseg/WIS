@@ -12,7 +12,7 @@ let app = require('express')()
     io = require('socket.io')(server),
     firebase = require('firebase'),
     firebaseMiddleware = require('express-firebase-middleware');
-    app.use('/api', firebaseMiddleware.auth);
+  //  app.use('/api', firebaseMiddleware.auth);
       require('firebase/auth');
       // Initialize Firebase for the application
       var baseConfig = {
@@ -38,12 +38,9 @@ let app = require('express')()
       // As an admin, the app has access to read and write all data, regardless of Security Rules
       var db = admin.database();
       var ref = db.ref("/");
-      ref.once("value", function(snapshot) {
-        console.log(snapshot.val());
-      });
       ref.on("child_changed", function(snapshot) {
         console.log("The snapshot changed dude: " + JSON.stringify(snapshot.val()));
-        io.emit('product changed', {hello: snapshot.val()});
+        io.emit('product changed', {id: snapshot.val().productId, qty: snapshot.val().productQty, pcr: snapshot.val().productCheckoutRate});
       });
 mongoose.Promise = global.Promise;
 
@@ -53,7 +50,8 @@ if (process.env.NODE_ENV === config.ENV.PROD) {
   app.use(express.static('src/build'));
 }
 
-app.get('/api/find-store', (req, res) => {
+app.use('/api/find-store', (req, res) => {
+  console.log("R: " + req.query.q);
   const store = req.query.q.toLowerCase();
   storeList = [];
   storeList.push(store);
@@ -91,9 +89,9 @@ reconnectToDB = (store) => {
   });
 }
 
-app.use('/api/food', (req, res) => {
-  return admin.database().ref("/").orderByChild("productName").equalTo(req.query.q).on("value", function(snapshot) {
-      console.log("Found this typa food: " + snapshot.val());
+app.get('/api/food', (req, res, next) => {
+    ref.once("value", snapshot => {
+      return res.send(snapshot.val());
   });
   /*const param = req.query.q;
   if (!param) {

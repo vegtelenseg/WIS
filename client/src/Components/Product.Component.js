@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import WatchedFoods  from './WatchedFoods.Component';
+import FoundFoods from './FoundFoods.Component';
 import '../Generated-CSS/Product-page.css';
-
-import io from 'socket.io-client';
-
-var socket = io.connect('http://localhost:4300');
-socket.on('product changed', (data) => {
-  console.log("Some changes Poi: " + data.hello);
-
-});
 
 const Utility = require('../Shared/scripts/utility.js');
 
@@ -23,6 +16,7 @@ class ProductComponent extends Component {
     }
     this.updateInputValue = this.updateInputValue.bind(this)
   }
+
   getProduct = (query) => {
     if (query !== undefined && query !== null) {
       if (Utility.validateQuery(query)) {
@@ -30,7 +24,7 @@ class ProductComponent extends Component {
           this.setState({
             foundfoods: foods.map((food, idx) => {
             return (
-              <div key={idx} onClick={() => this.watchFood(food)}>
+              <div id={food.productId} key={idx} onClick={() => this.watchFood(food)}>
                 <h2>Item: {food.productName}</h2>
                 <h4>Brand: {food.productBrand}</h4>
                 <p>{food.productBestBefore}</p>
@@ -122,7 +116,7 @@ class ProductComponent extends Component {
           onKeyPress={this.handleEnter}
           placeholder={"Search " + this.props.location.query + "'s products"}
           />
-          <div id="found-foods">{this.state.foundfoods}</div>
+          <FoundFoods found={this.state.foundfoods}/>
           <WatchedFoods watchedFood={this.state.watchedFoods} unwatchFood={this.unwatchFood}/>
       </div>
     );

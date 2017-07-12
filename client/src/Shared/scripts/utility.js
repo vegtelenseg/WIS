@@ -2,7 +2,6 @@ const stores = require('../json-data/stores.json');
 const validator = require('./validators');
 
 const headers = new Headers({
-  'Authorization-Bearer': 'AIzaSyCOCVzBz1ixPxBmXDJTziQ_vRB62pEQsmw',
   'Content-Type': 'application/x-www-form-urlencoded',
   'Accept': 'application/json',
   'Access-Control-Allow-Origin': '*',
