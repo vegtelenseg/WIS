@@ -5,7 +5,7 @@ class FoundFoods extends Component {
   render() {
     return (
       <div className="found-foods">{
-        this.props.found.map((food, id) =>{
+        this.props.found.map((food, id) => {
           if (food) {
             return (
               <div id={food.productId} key={id} onClick={() => this.props.watcher(food)}>
@@ -17,6 +17,7 @@ class FoundFoods extends Component {
               </div>
             );
           }
+          return true;
         })
       }
       </div>
