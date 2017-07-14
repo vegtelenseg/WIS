@@ -62,7 +62,7 @@ unwatchFood = (itemIndex) => {
  * @param food : contains the selected product to be stored
 **/
 watchFood = (product) => {
-  localStorage.setItem(product._id, JSON.stringify(product));
+  localStorage.setItem(product.productId, JSON.stringify(product));
     const newFoods = this.state.watchedFoods.concat(product);
     this.setState({
       watchedFoods: newFoods
@@ -91,7 +91,9 @@ updateState = () => {
     let itemKey = localStorage.key(i),
         item = localStorage.getItem(itemKey),
         parsedItem = JSON.parse(item);
-    this.state.watchedFoods.push(parsedItem);
+        this.setState({
+          watchedFoods: this.state.watchedFoods.push(parsedItem)
+        });
   }
 }
 
@@ -103,9 +105,20 @@ updateState = () => {
 updateProduct = (dataObject, food) => {
   food.productCheckoutRate = dataObject.productCheckoutRate;
   food.productQty = dataObject.productQty;
+
   return food;
 }
 
+updateWatchedFoods = (dataObject) => {
+  this.state.watchedFoods.map((food) => {
+    if (food) {
+      if (food.productId === dataObject.productId) {
+        return this.updateProduct(dataObject, food);
+      }
+    }
+    return true;
+  });
+}
 /**
  * Finds the selected store.
  * Fires a 'product changed' event whenever the database changes.
@@ -118,8 +131,9 @@ componentWillMount = () => {
     Utility.findStore(store, (store) => {
       console.log("Found store: " + store)
     });
-    this.updateState();
+  //  this.updateState();
     socket.on('product changed', (data) => {
+      this.updateWatchedFoods(data.obj)
     this.setState({
       foundfoods: this.state.foundfoods.map((food) => {
         if (food) {
@@ -138,6 +152,9 @@ componentWillMount = () => {
   }
 }
 
+componentDidMount = () => {
+  return this.updateState();
+}
 
 /**
  * Handles the click event of the ENTER key and fires appropriate call-to-action
