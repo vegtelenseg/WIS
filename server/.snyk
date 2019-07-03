@@ -1,0 +1,170 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - babel-cli > babel-register > babel-core > babel-template > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-template > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-generator > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-generator > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - firebase-admin > @google-cloud/storage > async > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - firebase-admin > @google-cloud/firestore > google-gax > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-template > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-template > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-template > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - firebase > @firebase/firestore > grpc > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-helpers > babel-template > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-generator > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-helpers > babel-template > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-generator > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-generator > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-helpers > babel-template > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-template > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-template > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-generator > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-register > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-register > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-helpers > babel-template > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-template > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-template > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-generator > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-template > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-template > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-helpers > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-generator > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-generator > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-helpers > babel-template > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-helpers > babel-template > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-helpers > babel-template > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-helpers > babel-template > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - firebase-admin > @google-cloud/storage > @google-cloud/common > split-array-stream > async > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-template > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - firebase-admin > @google-cloud/storage > gcs-resumable-upload > google-auto-auth > async > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - firebase-admin > @google-cloud/storage > @google-cloud/common > google-auto-auth > async > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-template > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-helpers > babel-template > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-helpers > babel-template > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-helpers > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-template > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-helpers > babel-template > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-template > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-generator > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-register > babel-core > babel-helpers > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-traverse > lodash:
+        patched: '2019-07-03T21:17:27.029Z'
+    - babel-cli > babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2019-07-03T21:17:27.029Z'

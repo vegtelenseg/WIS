@@ -15,14 +15,17 @@
     "fs": "0.0.2",
     "http": "0.0.0",
     "socket.io": "^2.0.3",
-    "sql.js": "0.3.2"
+    "sql.js": "0.3.2",
+    "snyk": "^1.189.0"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "babel-node server.js",
     "client": "babel-node start-client.js",
     "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "concurrently": "3.1.0",
@@ -41,5 +44,6 @@
   "bugs": {
     "url": "https://github.com/Siyanda-Mzam/WIS/issues"
   },
-  "homepage": "https://github.com/Siyanda-Mzam/WIS#readme"
+  "homepage": "https://github.com/Siyanda-Mzam/WIS#readme",
+  "snyk": true
 }
